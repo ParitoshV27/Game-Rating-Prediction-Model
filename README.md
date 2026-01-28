@@ -1,90 +1,114 @@
-This project presents a two-stage machine learning framework for predicting video game reception by modeling pre-release expectations and post-release player experience separately. The study predicts critic ratings and user ratings using structured metadata, engineered features, and execution-level in-game attributes.
+# 🎮 Game Rating Prediction Using Pre- and Post-Release Features
 
-The project is accompanied by a research paper that analyzes feature importance, model behavior, and the limits of prediction at different stages of the game lifecycle.
+A two-stage **machine learning framework** to predict **video game critic and user ratings** by modeling the game lifecycle — **before release (expectations)** and **after release (player experience)**.
 
-Project Overview
+This project is designed as a **research-oriented study** and is accompanied by a conference-style paper.
 
-Video game reception evolves across time. Before release, ratings are shaped by expectations, brand reputation, and perceived value. After release, reception is driven primarily by gameplay experience, replayability, and execution quality.
+---
 
-To capture this distinction, the project implements two independent models:
-	•	Model 1 (Pre-release):
-Predicts expected ratings using only features available before launch.
-	•	Model 2 (Post-release):
-Predicts realized ratings using execution-level in-game features.
+## 🚀 Project Overview
 
-Critic and user ratings are modeled separately in both stages.
+Video game reception changes over time:
 
-Dataset
+- **Before release** → ratings are driven by expectations, studio reputation, pricing, and perceived scope  
+- **After release** → ratings are driven by gameplay quality, replayability, and execution
 
-The dataset was manually curated from publicly available sources and engineered for interpretability and temporal validity.
+To capture this distinction, this project implements **two separate models**:
 
-Data Sources
-	•	IGDB
-	•	HowLongToBeat
-	•	IGN
-	•	Steam
-	•	Metacritic
-	•	IMDb
+### 🟦 Model 1: Pre-Release Prediction  
+Predicts expected ratings using only features available **before launch**.
 
-Dataset Structure
-	•	Raw dataset: Manually curated game metadata
-	•	Engineered dataset: Feature-engineered version used for modeling
+### 🟩 Model 2: Post-Release Prediction  
+Predicts realized ratings using **execution-level in-game features**.
 
-The final pre-release dataset contains 170 games, which is the dataset used for all reported Model 1 results in the paper.
+Critic ratings and user ratings are modeled **independently** in both stages.
 
-Feature Engineering
+---
 
-Key feature categories include:
+## 📊 Dataset
 
-Pre-release Features
-	•	Structural metadata (genre, platforms, modes)
-	•	Pricing and playtime-based value metrics
-	•	Binary indicators (open-world, sequel, modding support)
-	•	Studio and franchise historical average ratings
-	•	Unique factor indicator for non-standard gameplay experiences
+The dataset was **manually curated** and engineered from publicly available sources.
 
-Post-release Features
-	•	Story depth
-	•	Gameplay quality
-	•	Replayability
-	•	World immersion
-	•	Narrative and audio quality indicators
+### 🔗 Data Sources
+- IGDB  
+- HowLongToBeat  
+- IGN  
+- Steam  
+- Metacritic  
+- IMDb  
 
-Derived features such as price per story hour and content density were used to capture perceived value and game design balance.
+### 🗂 Dataset Versions
+- **Pre-release dataset:** 170 games (final version used for Model 1 results)
+- **Post-release dataset:** Expanded dataset used for Model 2
 
-Models Used
+The dataset emphasizes **interpretability, temporal validity, and feature relevance** rather than scale alone.
 
-The following ensemble regression models were evaluated:
-	•	Random Forest Regressor (primary model)
-	•	Gradient Boosting Regressor
-	•	XGBoost Regressor
+---
 
-Random Forest was selected as the primary model due to its robustness and interpretability.
+## 🛠 Feature Engineering
 
-Evaluation Metrics
+### 🔹 Pre-Release Features
+- Genre, platforms, modes (counts + binary indicators)
+- Launch price and playtime-based value metrics
+- Open-world, sequel/spinoff, modding support
+- Studio and franchise historical average ratings
+- Unique factor indicator for non-generic experiences
 
-Model performance was evaluated using:
-	•	Mean Absolute Error (MAE)
-	•	Root Mean Squared Error (RMSE)
-	•	R² score
+### 🔹 Post-Release Features
+- Story depth
+- Gameplay quality
+- Replayability
+- World immersion
+- Narrative and audio quality indicators
 
-All evaluations were conducted separately for critic and user ratings.
+Derived features such as **price per story hour** and **content density** were used to capture perceived value.
 
-Results Summary
-	•	Pre-release prediction shows moderate predictability, driven mainly by studio reputation, pricing, and modding support.
-	•	Post-release prediction achieves substantially higher performance, dominated by gameplay quality and replayability.
-	•	Critic ratings are consistently more predictable than user ratings.
-	•	Replayability is the most influential post-release feature across models.
+---
 
-Detailed results and feature importance analysis are presented in the accompanying paper.
+## 🤖 Models Used
 
-Repository Structure
+- 🌳 Random Forest Regressor (primary model)
+- 📈 Gradient Boosting Regressor
+- ⚡ XGBoost Regressor
+
+Random Forest was selected as the primary model due to its **robust performance and interpretability**.
+
+---
+
+## 📐 Evaluation Metrics
+
+Models were evaluated using:
+- Mean Absolute Error (MAE)
+- Root Mean Squared Error (RMSE)
+- R² Score
+
+All evaluations were performed **separately for critics and users**.
+
+---
+
+## 🧠 Key Findings
+
+- Pre-release prediction shows **moderate predictability**, driven mainly by:
+  - Studio reputation
+  - Pricing
+  - Modding support
+- Post-release prediction achieves **significantly higher accuracy**, dominated by:
+  - Replayability
+  - Gameplay quality
+  - Narrative depth
+- Critic ratings are more predictable than user ratings
+- Replayability is the strongest post-release predictor across models
+
+---
+
+## 📁 Repository Structure
+
 game-rating-prediction/
 │
 ├── data/
 │   ├── Games List 170.csv
 │   ├── In Game Features.csv
-│   └── games_engineered.csv
+│   └── games_engineered.md
 │
 ├── notebooks/
 │   ├── game_rating_prediction_pre_release.ipynb
@@ -96,16 +120,35 @@ game-rating-prediction/
 ├── README.md
 └── requirements.txt
 
-Paper
 
-A research paper based on this project is currently in preparation, presenting the methodology, results, discussion, and future work in conference format.
 
-Notes
-	•	This repository is intended as a research artifact supporting the paper.
-	•	The project emphasizes interpretability and lifecycle-aware modeling rather than commercial prediction.
-	•	Large language models were used only for limited assistance in feature standardization, with all outputs manually reviewed.
+---
 
-Author
+## 📄 Research Paper
 
-Paritosh Vishwasrao
+A **conference-style research paper** based on this project is currently **in preparation**, covering:
+- Dataset construction
+- Feature engineering
+- Model comparison
+- Results, discussion, and future work
+
+---
+
+## ⚠ Notes
+
+- This repository is intended as a **research artifact**
+- Focus is on **interpretability and lifecycle-aware modeling**
+- Large language models were used only for **limited assistance in feature standardization**, with all outputs manually reviewed
+
+---
+
+## 👤 Author
+
+**Paritosh Vishwasrao**
+
+🎓 Aspiring MS in Data Science / AI  
+📊 Interests: Applied ML, Game Analytics, Predictive Modeling
+
+---
+
 
